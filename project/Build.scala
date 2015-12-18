@@ -37,6 +37,11 @@ object Build extends Build {
         "org.scala-lang" % "scala-reflect" % Scala211,
         "org.scala-lang" % "scala-compiler" % Scala211 % Provided))
 
+  def usesMacroParadise: Project => Project =
+    _.settings(
+      addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
+    )
+
   def preventPublication: PE =
     _.settings(
       publishArtifact := false,
@@ -114,7 +119,7 @@ object Build extends Build {
   // ==============================================================================================
 
   lazy val macros = project
-    .configure(commonSettings, utestSettings, publicationSettings, definesMacros, useReact())
+    .configure(commonSettings, utestSettings, publicationSettings, definesMacros, usesMacroParadise, useReact())
     .settings(
       name := "macros",
       libraryDependencies ++= Seq(
@@ -124,7 +129,7 @@ object Build extends Build {
 
   // ==============================================================================================
   lazy val core = project
-    .configure(commonSettings, publicationSettings, useReact())
+    .configure(commonSettings, publicationSettings, useReact(), usesMacroParadise)
     .dependsOn(macros)
     .settings(
       name := "core",
