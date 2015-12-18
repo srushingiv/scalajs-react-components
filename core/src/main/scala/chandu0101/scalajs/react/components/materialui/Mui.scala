@@ -54,6 +54,7 @@ object Mui extends js.Object {
   val SelectField:          js.Dynamic = js.native
   val Slider:               js.Dynamic = js.native
   val SvgIcon:              js.Dynamic = js.native
+  val SvgIcons:             js.Dynamic = js.native
   val Icons:                js.Dynamic = js.native
   val Styles:               MuiStyles  = js.native
   val Snackbar:             js.Dynamic = js.native
