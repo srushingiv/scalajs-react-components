@@ -9,8 +9,8 @@ lazy val macros =
     .settings(
       name := "scalajs-react-components-macros",
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalajs-react" %%% "core"      % "1.1.1",
-        "com.github.japgolly.scalajs-react" %%% "extra"     % "1.1.1",
+        "com.github.japgolly.scalajs-react" %%% "core"      % "1.2.0",
+        "com.github.japgolly.scalajs-react" %%% "extra"     % "1.2.0",
         "org.scalatest"                     %%% "scalatest" % "3.0.4" % Test
       )
     )
@@ -153,7 +153,7 @@ lazy val root =
 lazy val commonSettings =
   Seq(
     scalaVersion := "2.12.4",
-    version := "1.0.0-M2",
+    version := "1.0.0-M3-SNAPSHOT",
     name := "scalajs-react-components",
     organization := "com.olvind",
     homepage := Some(url("http://chandu0101.github.io/scalajs-react-components")),

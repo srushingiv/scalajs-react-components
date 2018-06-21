@@ -39,7 +39,7 @@ object GoogleMap {
           node =>
             t.modState(
               _.copy(mapObjects = Some(
-                (new GMap(node, MapOptions(P.center, P.zoom).toGMapOptions), new GInfoWindow))),
+                (new GMap(node.asElement, MapOptions(P.center, P.zoom).toGMapOptions), new GInfoWindow))),
               callback = updateMap(P)
           ))
 
