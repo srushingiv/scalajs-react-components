@@ -4,11 +4,11 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom._
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom.html.Div
 
 import scala.scalajs.js
+import scala.scalajs.js.JSConverters.JSRichOption
 
 object MuiPopoverDemo {
   val code = GhPagesMacros.exampleSource
@@ -36,7 +36,7 @@ object MuiPopoverDemo {
   case class State(open: Boolean, target: Origin, anchor: Origin)
 
   private case class Backend($ : BackendScope[Unit, State]) {
-    var ref: js.UndefOr[Div] = js.undefined
+    private val ref = Ref[Div]
 
     val toggle: Callback =
       $.modState(s => s.copy(open = !s.open))
@@ -73,11 +73,11 @@ object MuiPopoverDemo {
                 onClick = (e: ReactEvent) => toggle,
                 label = "Click on me to show a popover"
               )()
-            ).ref(ref = _),
+            ).withRef(ref),
             originChoices.map(_.menu(S)).toVdomArray,
             MuiPopover(
               open = S.open,
-              anchorEl = ref,
+              anchorEl = ref.get.asCallback.runNow.orUndefined,
               anchorOrigin = S.anchor,
               targetOrigin = S.target,
               onRequestClose = (s: String) => toggle
